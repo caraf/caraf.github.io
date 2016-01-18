@@ -1,0 +1,35 @@
+<body class="body">
+    <form name="myForm" class="info-container" novalidate>
+        <div name="mealDetailForm" class="info-with-border">
+            <h2>Enter the Meal Details</h2>
+            <p>Base Meal Price: $ <input type="text" name="baseMealPrice" ng-model="baseMealPrice" required ng-pattern="/^\d*.\d\d$/"></p> 
+            <p>Tax Rate: % <input type="text" name="taxRate" ng-model="taxRate" required ng-pattern="/^\d*\.?\d+$/"></p> 
+            <p>Tip Percentage: % <input type="number" name="tipPercentage" ng-model="tipPercentage" required ng-pattern="/^\d*\.?\d+$/"></p> 
+
+            <button type="submit" ng-click="submit()">Submit</button>
+            <button type="button" ng-click="cancel()">Cancel</button>
+          </div>
+
+         <div class="info-with-border">
+             <h2>Customer Charges</h2>
+             <p>Subtotal: {{subTotal}}</p>
+             <p>Tip: {{tip}}</p>
+             <p>Total: {{total}}</p>
+         </div>
+    </form>
+
+    <div ng-if="myForm.$submitted"  ng-messages="myForm.baseMealPrice.$error">
+        <span ng-message="required">Base Meal Price is required!</span>
+        <span ng-message="pattern">Base Meal Price must be of the form #.##!</span>
+    </div>
+    <div ng-if="myForm.$submitted"  ng-messages="myForm.taxRate.$error">
+        <span ng-message="required">Tax Rate is required!</span>
+        <span ng-message="pattern">Tax Rate must be numeric!</span>
+    </div>
+    <div ng-if="myForm.$submitted"  ng-messages="myForm.tipPercentage.$error">
+        <span ng-message="required">Tip Percentage is required!</span>
+        <span ng-message="pattern">Tip Percentage must be numeric!</span>
+    </div>
+
+</body>
+  
